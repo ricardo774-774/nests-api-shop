@@ -7,7 +7,7 @@ import { Customer } from 'src/schemas/customer.schema';
 @Injectable()
 export class CustomerService {
 
-    constructor(@InjectModel('Product') private readonly customerModel: Model<Customer>){}
+    constructor(@InjectModel('Customer') private readonly customerModel: Model<Customer>){}
 
     async getCustomers(): Promise<Customer[]> {
         const Customers = await this.customerModel.find(); 

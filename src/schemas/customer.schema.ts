@@ -7,10 +7,10 @@ export class Customer extends Document{
     @Prop({type: String, required:true})
     name: string;
 
-    @Prop({type: String, required:true, unique: true, message: 'Password must be unique'})
+    @Prop({type: String, required:true, unique: true})
     password: string;
 
-    @Prop({type: String, required:true, unique:true, message: 'Email must be unique'})
+    @Prop({type: String, required:true, unique: true})
     email: string;
 }
 
