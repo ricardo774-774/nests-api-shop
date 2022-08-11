@@ -6,7 +6,7 @@ export class CreateProductDTO {
     @IsNotEmpty()
     userId: MongooseSchema.Types.ObjectId;
     
-    @Matches(/^[A-z]+(?:[A-z]+)*$/, {
+    @Matches(/^[A-z_]+(?:[A-z_]+)*$/, {
         message: 'Invalid name format, only letters and spaces'
     })
     @IsNotEmpty()

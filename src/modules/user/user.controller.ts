@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, HttpStatus, NotFoundException, Param, Post, Put, Res } from '@nestjs/common';
-import { CreateUserDTO } from 'src/dtos/user.dto';
+import { CreateUserDTO } from 'src/modules/user/dtos/user.dto';
 import { UserService } from './user.service';
 
 

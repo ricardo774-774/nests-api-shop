@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { CreateProductDTO } from 'src/dtos/product.dto';
-import { Product } from 'src/schemas/product.schema';
+import { Model, Types } from 'mongoose';
+import { CreateProductDTO } from 'src/modules/product/dtos/product.dto';
+import { Product } from 'src/modules/product/schemas/product.schema';
 
 @Injectable()
 export class ProductService {
@@ -11,7 +11,17 @@ export class ProductService {
 
     async getProducts(): Promise<Product[]> {
         const Products = await this.productModel.find(); 
-        return Products;              
+        return Products;          
+    }
+
+   async getProductsUser(userId: string): Promise<Product[]> {
+        return this.productModel.aggregate([
+            {
+                $match: {
+                    userId: new Types.ObjectId(userId),
+                },
+            },
+        ]);
     }
 
     async getAProduct(productId: string): Promise<Product> {

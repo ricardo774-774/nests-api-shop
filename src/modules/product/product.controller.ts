@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, HttpStatus, NotFoundException, Param, Post, Put, Res } from '@nestjs/common';
-import { CreateProductDTO } from 'src/dtos/product.dto';
+import { CreateProductDTO } from 'src/modules/product/dtos/product.dto';
 import { ProductService } from "./product.service";
 
 @Controller('product')
