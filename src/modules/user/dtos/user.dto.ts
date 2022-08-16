@@ -3,7 +3,7 @@ import { IsEmail, IsNotEmpty, IsString, MaxLength, MinLength, Matches } from 'cl
 export class CreateUserDTO {
     @MinLength(3)
     @MaxLength(20)
-    @Matches(/^[A-z_]+(?:[A-z_]+)*$/, {
+    @Matches(/^[A-z0-9_]+(?:\s[A-z0-9_]+)*$/, {
         message: 'Invalid name format, only letters and spaces'
     })
     @IsNotEmpty()

@@ -1,9 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from "mongoose";
+import { Schema as _Schema } from "mongoose";
 
 @Schema()
 export class Product extends Document{
-    @Prop({type: [Types.ObjectId], ref: 'User'})
+    @Prop({type: _Schema.Types.ObjectId, ref: 'User'})
     userId: string;
 
     @Prop({type: String, required:true})

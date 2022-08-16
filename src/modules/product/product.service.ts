@@ -9,9 +9,27 @@ export class ProductService {
 
     constructor(@InjectModel('Product') private readonly productModel: Model<Product>){}
 
+    
     async getProducts(): Promise<Product[]> {
-        const Products = await this.productModel.find(); 
-        return Products;          
+        return this.productModel.aggregate([
+            {
+                $project: {
+                    userId: 1,
+                    name: 1,
+                    price: 1,
+                    createdDay: 1,
+                    _id: 1 
+                }
+            },
+            {
+                $sort: {
+                    createdDay: -1,
+                }
+            },
+            {
+                $limit: 4
+            },
+        ]);
     }
 
    async getProductsUser(userId: string): Promise<Product[]> {

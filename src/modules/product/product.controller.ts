@@ -27,6 +27,16 @@ export class ProductController {
         });      
     }
 
+    @Get('/myProducts/:id')
+    async getProductsUser(@Res() res, @Param('id') id: string){
+        const MyProduct = await this.productService.getProductsUser(id);
+        if(!MyProduct) throw new NotFoundException('Wrong user id, try with another');
+        return res.status(HttpStatus.OK).json({
+            message: `These are your products`,
+            MyProduct
+        });      
+    }
+
     @Post('/')
     async createProduct(@Res() res, @Body() createProductDTO: CreateProductDTO){
         const createdProduct = await this.productService.createProduct(createProductDTO);
