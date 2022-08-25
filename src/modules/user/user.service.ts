@@ -10,8 +10,31 @@ export class UserService {
     constructor(@InjectModel('User') private readonly userModel: Model<User>){}
 
     async getUsers(): Promise<User[]> {
-        const Users = await this.userModel.find(); 
-        return Users;              
+        return this.userModel.aggregate([
+            {
+                $lookup: {
+                    from: "products",
+                    localField: "_id",
+                    foreignField: "userId",
+                    as: "products"
+                }
+            },
+            {
+                $project: {
+                    name: 1,
+                    password: 1,
+                    email: 1,
+                    products: 1,
+                    _id: 1
+                }
+            },
+            {
+                $skip: 0
+            },
+            {
+                $limit: 10
+            },
+        ]);        
     }
 
     async getAUser(userId: string): Promise<User> {

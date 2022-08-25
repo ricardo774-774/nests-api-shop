@@ -26,6 +26,9 @@ export class ProductService {
                     createdDay: -1,
                 }
             },
+            /*{
+                $skip: 0
+            },*/
             {
                 $limit: 4
             },
